@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试加载</title>
+    <script src="../Cesium/Cesium.js"></script>
+    <script src="../js/source/Sandcastle-header.js"></script>
+    <script src="../../js/origin/jquery-3.6.0.min.js"></script>
+    <link href="../Cesium/Widgets/widgets.css" rel="stylesheet">
+    <style>
+        @import url(../css/bucket.css);
+
+        #toolbar {
+            background: rgba(42, 42, 42, 0.8);
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        #toolbar table tr {
+            transform: translateY(0);
+            transition: transform 0.4s ease-out;
+        }
+
+        #toolbar input {
+            vertical-align: middle;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+<div id="cesiumContainer" class="fullSize"></div>
+<div id="toolbar">
+    <table>
+        <tr>
+            <td>相机</td>
+            <td>
+                <button class="cesium-button" onclick="load()">定位</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script src="../js/test/test1.js" ></script>
+
+</body>
+</html>

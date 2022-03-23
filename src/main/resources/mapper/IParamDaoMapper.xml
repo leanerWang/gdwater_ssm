@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xin.dao.param.IWaterLevelDao" >
+<!--    配置参数、结果集别名-->
+    <resultMap id="WaterLevelResultMap" type="cn.xin.domain.param.WaterLevel">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="point_name" property="pointName"/>
+        <result column="longitude" property="longitude"/>
+        <result column="latitude" property="latitude"/>
+        <result column="level" property="level"/>
+    </resultMap>
+
+    <resultMap id="ParamResultMap" type="cn.xin.domain.param.SiteParam">
+        <result column="id" property="id"/>
+        <result column="param_name" property="name"/>
+        <result column="param_type" property="type"/>
+        <result column="note" property="note"/>
+    </resultMap>
+
+    <!--    插入数据 -->
+    <insert id="insert" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        insert into gdwater_level (name , longitude, latitude, level,point_name )
+        VALUES
+        <foreach collection="list" item="waterLevel" separator="),(" open="(" close=")">
+            #{waterLevel.name}, #{waterLevel.longitude}, #{waterLevel.latitude}, #{waterLevel.level}, #{waterLevel.pointName}
+        </foreach>
+    </insert>
+
+    <insert id="insertParam" parameterType="cn.xin.domain.param.SiteParam" useGeneratedKeys="true" keyProperty="id">
+        insert into site_param (param_name , param_type,  note)
+        VALUES
+        (#{name}, #{type }, #{note})
+    </insert>
+
+
+    <!--    执行查询用户地下水名称-->
+    <select id="findParamNames" parameterType="java.lang.String" resultMap="ParamResultMap">
+        select * from site_param
+        where param_type = #{type}
+    </select>
+
+
+<!--    查询特定场地的水位值-->
+    <select id="findWaterLevels" parameterType="java.lang.String" resultMap="WaterLevelResultMap">
+        select * from gdwater_level
+        where name = #{name}
+    </select>
+    
+</mapper>

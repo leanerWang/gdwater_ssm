@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <script src="../Cesium/Cesium.js"></script>
+    <script src="../js/source/Sandcastle-header.js"></script>
+    <link href="../Cesium/Widgets/widgets.css" rel="stylesheet">
+    <style>
+        @import url(../css/bucket.css);
+
+        #toolbar {
+            background: rgba(42, 42, 42, 0.8);
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        #toolbar table tr {
+            transform: translateY(0);
+            transition: transform 0.4s ease-out;
+        }
+
+        #toolbar input {
+            vertical-align: middle;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cesiumContainer" class="fullSize"></div>
+    <div id="toolbar">
+        <table>
+            <tr>
+                <td>相机</td>
+                <td>
+                    <button onclick="load()" class="cesium-button">定位</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    地球透明
+                </td>
+                <td>
+                    <input type="checkbox" data-bind="checked: enabled">
+                </td>
+            </tr>
+            <tr>
+                <td>土壤透明度</td>
+                <td>
+                    <input type="range" min="0.0" max="1.00" step="0.01"
+                        data-bind="value: nearAlpha, valueUpdate: 'input'">
+                    <input type="text" size="1.00" data-bind="value: nearAlpha">
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    <input type="checkbox" data-bind="checked: handleEnable">
+                </td>
+                <td><select data-bind="options:functionOptions, optionsText:'text', value:selectedFun"></select></td>
+                <td><button class="cesium-button" onclick="clearBaseOptions()">清除</button></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" data-bind="checked: simulateEnable">
+                </td>
+                <td>
+                    选择污染点
+                </td>
+            </tr>
+            <tr>
+                <td>网格数量</td>
+                <td><input type="range" min="5" max="50" step="1" data-bind="value: gridNum, valueUpdate: 'input'">
+                    <input type="text" size="1" data-bind="value: gridNum"></td>
+            </tr>
+            <tr>
+                <td><button onclick="meshing()" class="cesium-button">三维模拟</button></td>
+                <td><button onclick="simulate()" class="cesium-button">添加粒子</button></td>
+                <td><button onclick="stopSurfaceDiffusion()" class="cesium-button">清除</button></td>
+            </tr>
+
+        </table>
+    </div>
+    <script src="../js/begin/index.js"></script>
+    <script src="../js/base/base.js"></script>
+    <script src="../js/begin/particle.js"></script>
+    <script src="../js/begin/observer.js"></script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xin.dao.sites.ISoilDao">
+<!--    配置参数、结果集别名-->
+<!--    <resultMap id="SoilResultMap" type="cn.xin.domain.sites.SoilProp">-->
+<!--        <result column="id" property="id"/>-->
+<!--        <result column="soil_depth" property="soilDepth"/>-->
+<!--        <result column="soil_porosity" property="soilPorosity"/>-->
+<!--        <result column="soil_number" property="soilNumber"/>-->
+<!--        <result column="soil_permeability" property="soilPermeability"/>-->
+<!--    </resultMap>-->
+
+    <resultMap id="SoilResultMap" type="cn.xin.domain.sites.SoilProp">
+        <result column="id" property="id"/>
+        <result column="gdwater_name" property="gdwaterName"/>
+        <result column="porosity_name" property="porosityName"/>
+        <result column="permeability_name" property="permeabilityName"/>
+        <result column="pressure_name" property="pressureName"/>
+    </resultMap>
+
+
+    <!--    插入数据 -->
+<!--    <insert id="insert" parameterType="cn.xin.domain.sites.SoilProp" useGeneratedKeys="true" keyProperty="id">-->
+<!--        insert into water_soil (soil_depth,soil_porosity,soil_number,soil_permeability)-->
+<!--        VALUES(#{soilDepth},#{soilPorosity},#{soilNumber},#{soilPermeability})-->
+<!--        returning id-->
+<!--    </insert>-->
+    <insert id="insert" parameterType="cn.xin.domain.sites.SoilProp" useGeneratedKeys="true" keyProperty="id">
+        insert into soil (gdwater_name,porosity_name,permeability_name,pressure_name)
+        VALUES(#{gdwaterName},#{porosityName},#{permeabilityName},#{pressureName})
+        returning id
+    </insert>
+
+
+<!--    执行查询用户所有场地-->
+    <select id="findSoilById" parameterType="java.lang.Integer" resultMap="SoilResultMap">
+        select * from soil
+        where id = #{id}
+    </select>
+
+    <!--    修改场地-->
+    <update id="updateById" parameterType="cn.xin.domain.sites.SoilProp" >
+        update soil
+        SET gdwater_name=#{gdwaterName},porosity_name=#{porosityName},
+        permeability_name=#{permeabilityName},pressure_name=#{pressureName}
+        WHERE id = #{id}
+    </update>
+
+
+<!--&lt;!&ndash;根据场地唯一id查询&ndash;&gt;-->
+<!--    <select id="findOneSiteById" parameterType="java.lang.Integer" resultMap="SiteResultMap">-->
+<!--        select * from water_sites-->
+<!--        where id = #{id}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;根据用户和场地名称查询一个场地&ndash;&gt;-->
+<!--    <select id="findOneSite" parameterType="java.lang.String" resultMap="SiteResultMap" >-->
+<!--        select * from water_sites-->
+<!--        where owner_name = #{username} and  site_name = #{siteName}-->
+<!--    </select>-->
+
+
+
+
+
+<!--&lt;!&ndash;    删除场地&ndash;&gt;-->
+<!--    <delete id="deleteSite" parameterType="java.lang.Integer" >-->
+<!--        delete from water_sites-->
+<!--        where id = #{id}-->
+<!--    </delete>-->
+
+    
+</mapper>
