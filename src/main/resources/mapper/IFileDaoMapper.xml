@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xin.dao.sites.IFileDao">
+<!--    配置参数、结果集别名-->
+    <resultMap id="FileResultMap" type="cn.xin.domain.sites.FileDaoProp">
+        <result column="id" property="id"/>
+        <result column="file_name" property="fileName"/>
+        <result column="file_owner" property="fileOwner"/>
+        <result column="file_object" property="fileObject"/>
+        <result column="file_date" property="fileDate"/>
+        <result column="file_url" property="fileUrl"/>
+        <result column="file_description" property="fileDescription"/>
+        <result column="file_type" property="fileType"/>
+    </resultMap>
+
+
+    <!--    插入影像数据 -->
+    <insert id="insertToImg" parameterType="cn.xin.domain.sites.FileDaoProp" >
+        insert into water_img (file_name,file_owner,file_object,file_date,file_url ,file_description,file_type, file_box)
+        VALUES(#{fileName},#{fileOwner},#{fileObject},#{fileDate},#{fileUrl}, #{fileDescription}, #{fileType} , #{fileBox})
+    </insert>
+
+    <!--    插入地形数据 -->
+    <insert id="insertToDem" parameterType="cn.xin.domain.sites.FileDaoProp" >
+        insert into water_dem (file_name,file_owner,file_object,file_date,file_url ,file_description,file_type,file_box)
+        VALUES(#{fileName},#{fileOwner},#{fileObject},#{fileDate},#{fileUrl}, #{fileDescription}, #{fileType},#{fileBox})
+    </insert>
+
+    <insert id="insertToCommon" parameterType="cn.xin.domain.sites.FileDaoProp" >
+        insert into water_file (file_name,file_owner,file_object,file_date,file_url ,file_description,file_type)
+        VALUES(#{fileName},#{fileOwner},#{fileObject},#{fileDate},#{fileUrl}, #{fileDescription}, #{fileType})
+    </insert>
+
+<!--    执行查询用户所有影像文件-->
+    <select id="findFilesToImg" parameterType="java.lang.String" resultMap="FileResultMap">
+        select * from water_img
+        where file_owner = #{name}
+    </select>
+
+
+    <!--    执行查询用户所有地形文件-->
+    <select id="findFilesToDem" parameterType="java.lang.String" resultMap="FileResultMap">
+        select * from water_dem
+        where file_owner = #{name}
+    </select>
+
+    <!--    执行查询用户所有普通文件-->
+    <select id="findFilesToCommon" parameterType="java.lang.String" resultMap="FileResultMap">
+        select * from water_file
+        where file_owner = #{name}
+    </select>
+
+    <!--    执行查询用户所有普通文件-->
+    <select id="findFileById" resultMap="FileResultMap">
+        select * from ${tableType}
+        where id = #{id}
+    </select>
+
+
+    <!--    执行查询用户所有影像文件-->
+    <select id="findByUrl" parameterType="java.lang.String"  resultMap="FileResultMap">
+        select * from ${fileType}
+        where file_url = #{fileUrl}
+    </select>
+
+    <!--    修改场地-->
+    <update id="updateFile" >
+        update ${tableType}
+        SET file_name=#{fileDaoProp.fileName},file_description=#{fileDaoProp.fileDescription},file_date=#{fileDaoProp.fileDate}
+        WHERE id = #{fileDaoProp.id}
+    </update>
+
+
+    <!--    删除场地-->
+    <delete id="delete" >
+        delete from ${tableType}
+        where id = #{id}
+    </delete>
+
+<!--&lt;!&ndash;根据场地唯一id查询&ndash;&gt;-->
+<!--    <select id="findOneSiteById" parameterType="java.lang.Integer" resultMap="SiteResultMap">-->
+<!--        select * from water_sites-->
+<!--        where id = #{id}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;根据用户和场地名称查询一个场地&ndash;&gt;-->
+<!--    <select id="findOneSite" parameterType="java.lang.String" resultMap="SiteResultMap" >-->
+<!--        select * from water_sites-->
+<!--        where owner_name = #{username} and  site_name = #{siteName}-->
+<!--    </select>-->
+
+
+
+
+
+    
+</mapper>

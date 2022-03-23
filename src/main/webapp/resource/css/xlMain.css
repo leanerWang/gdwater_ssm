@@ -1,0 +1,301 @@
+
+.xl-header-nav{
+    background-color: rgb(14, 20, 34)
+}
+
+/* 左侧导航栏样式 */
+.left-nav {
+    background-color: #35383e;
+    top: 4rem;
+    position: sticky;
+    height: calc(100vh - 4rem);
+}
+
+/*中央导航条样式*/
+.xl-center-nav{
+    position: sticky;
+    top: 4rem;
+    z-index: 100;
+}
+
+/*场地头部*/
+.xl-site-header{
+    position: sticky;
+    top: 7.2rem;
+    z-index: 50;
+}
+
+/*信息中间站图片*/
+.xl-card-img{
+    display: inline-block;
+    width: 100%;
+}
+
+/* 头部链接样式 */
+.xl-header-link{
+    color: rgb(236, 232, 232);
+    display: inline-block;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+
+}
+.xl-li-link{
+    color: rgb(236, 232, 232);
+    display: inline-block;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    font-size: 1rem;
+}
+.xl-li-link:hover , .xl-header-link:hover{
+    color:  rgb(216, 201, 201);
+    text-decoration: none;
+}
+
+/* 主页头部 */
+.xl-home-header{
+    background-color: rgb(14, 20, 34);
+    font-family: Roboto,Sarabun;
+    color: rgb(255, 255, 255);
+}
+.xl-home-image{
+    position: relative;
+    left: -18%;
+}
+.xl-home-content{
+    padding-top: 11%;
+    left: -18%;
+    letter-spacing: 0.125rem;
+}
+
+/* 主页第一页下边框 */
+.xl-home-buttom{
+    height: 10px;
+    background-color: rgb(15, 98, 105);
+}
+
+/* 主页下方 */
+.xl-home-second{
+    padding-top: 7.5rem;
+}
+.xl-home-card{
+    padding-top: 2.5rem;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 2.5rem;
+}
+
+/* 主页底部信息 */
+.xl-home-foot{
+    font-family: Roboto, Sarabun;
+    background-color: rgb(50, 53, 61);
+    height: 310px;
+    margin-top: 1.5rem;
+}
+.xl-home-center{
+    padding-top: 5.5rem;
+}
+
+/*头部字体*/
+.xl-font-header{
+    color: black;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+/*阴影效果*/
+.xl-shadow{
+    box-shadow: 6px 3px 5px teal;
+}
+
+/*最小高度*/
+.xl-wrapper-height{
+    min-height: 710px;
+}
+.xl-full-height{
+    min-height: 558px;
+}
+
+/*输入框组*/
+.xl-form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    height: 33px;
+}
+.xl-form-control:focus{
+    border-style:solid;
+    border-color: #03a9f4;
+    box-shadow: 0 0 5px #03a9f4;
+    outline: none;
+}
+.xl-svg-center{
+    text-align: center;
+    vertical-align: middle;
+}
+.xl-title-margin{
+    margin-bottom: 15px;
+}
+
+.xl-my-wrapper{
+    padding: 15px;
+}
+
+
+/* 发布 */
+.xl-cesium-fullsize{
+    display: block;
+    position: absolute;
+    top: 71px;
+    left: 0;
+    border: none;
+    width: 100%;
+    height: calc(100% - 71px);
+}
+.xl-cesium-bcg{
+    background: rgba(42, 42, 42, 0.8);
+    border-radius: 4px;
+    border-radius: 5px;
+}
+.xl-div-dismiss{
+    display: none;
+}
+.xl-toolbar{
+    margin: 5px;
+    padding: 2px 5px;
+    position: absolute;
+}
+.xl-toolbar table tr {
+    transform: translateY(0);
+    transition: transform 0.4s ease-out;
+    margin: 5px;
+}
+.xl-toolbar table td {
+    padding: 5px;
+}
+
+.xl-toolbar table td :disabled {
+    cursor: not-allowed;
+}
+
+.xl-toolbar input {
+    vertical-align: middle;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.xl-toolbar td span {
+    padding: 10px;
+    vertical-align: middle;
+}
+.xl-icon-ion i {
+    display: inline-block;
+    transition: all 0.2s;
+    width: 40px;
+}
+.xl-icon-ion a{
+    line-height: 38px;
+    cursor: pointer;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    vertical-align: middle;
+    text-align: center;
+}
+.xl-icon-ion a:visited{
+    color: red;
+}
+.xl-icon-ion a:hover{
+    color: #ff6347;
+}
+
+.xl-icon-ion div{
+    margin: 5px;
+    margin-right: 20px;
+}
+.xl-icon-ion table{
+    margin-left: 12px;
+}
+.xl-cesium-param{
+    top: 78px;
+    left: 435px;
+}
+
+/* 覆盖控件原来的样式 */
+.cesium-zoom-controller {
+    position: absolute;
+    top: 215px;
+    right: 23px;
+    pointer-events: auto;
+    user-select: none;
+    background: #3f4854;
+    border-radius: 100px;
+    border: 1px solid hsla(0,0%,100%,.2);
+    text-align: center;
+    box-sizing: border-box;
+    line-height: 20px;
+    width: 24px;
+    height: 60px
+}
+.cesium-compass {
+    position: absolute;
+    top: 148px;
+    right: 8px;
+    cursor: pointer;
+    pointer-events: auto;
+    user-select: none;
+    width: 55px;
+    height: 55px;
+}
+.label{
+    display: block;
+}
+.cesium-viewer-toolbar {
+    display: block;
+    position: absolute;
+    top: 99px;
+    right: 17px;
+}
+.cesium-location-bar {
+    font-family: cursive, fantasy, sans-serif;
+    position: absolute;
+    right: 49px;
+    bottom: 2px;
+    font-size: 14px;
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 2px;
+    user-select: none;
+    display: flex;
+    background: none;
+    left: auto;
+}
+.cesium-distance-legend {
+    font-family: cursive, fantasy, sans-serif;
+    position: absolute;
+    right: 715px;
+    bottom: 2px;
+    width: 125px;
+    height: 25px;
+    user-select: none;
+    left: auto;
+}
+/*logo*/
+.xl-logo{
+    height: 49px;
+}
+
+.xl-table-color tbody tr:nth-child(odd){
+    background-color:rgb(178, 200, 187);
+}
+.xl-table-color tbody tr:nth-child(even){
+    background-color: #BEE7E9;
+}

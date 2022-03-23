@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xin.dao.sites.ISiteDao">
+<!--    配置参数、结果集别名-->
+    <resultMap id="SiteResultMap" type="cn.xin.domain.sites.SiteProp" >
+        <result column="id" property="id"/>
+        <result column="site_name" property="siteName"/>
+        <result column="site_description" property="siteDescription"/>
+        <result column="site_date" property="siteDate"/>
+        <result column="site_owner" property="siteOwner"/>
+        <result column="dem_id" property="demId"/>
+        <result column="img_id" property="imgId"/>
+        <result column="soil_id" property="soilId"/>
+        <result column="bounding_name" property="boundingName"/>
+    </resultMap>
+    <resultMap id="BoundingResultMap" type="cn.xin.domain.sites.SiteBoundingPoints" >
+        <result column="id" property="id"/>
+        <result column="bounding_name" property="siteName"/>
+        <result column="point_name" property="pointName"/>
+        <result column="point_longitude" property="longitude"/>
+        <result column="point_latitude" property="latitude"/>
+    </resultMap>
+
+    <!--    插入数据 默认场地名称和文件数据库文件前缀名称相同-->
+    <insert id="insertSiteBoundingPoints" parameterType="cn.xin.domain.sites.SiteBoundingPoints" >
+        insert into site_bounding (bounding_name,point_name,point_longitude,point_latitude)
+        VALUES(#{siteName},#{pointName},#{longitude},#{latitude})
+    </insert>
+
+<!--    插入数据 默认场地名称和文件数据库文件前缀名称相同-->
+    <insert id="insertSite" parameterType="cn.xin.domain.sites.SiteProp" >
+        insert into water_site (site_name,site_description,site_date,site_owner,dem_id,img_id ,soil_id, bounding_name)
+        VALUES(#{siteName},#{siteDescription},#{siteDate},#{siteOwner},#{demId},#{imgId}, #{soilId}, #{boundingName})
+    </insert>
+
+<!--    执行查询用户所有场地-->
+    <select id="findSitesByName" parameterType="java.lang.String" resultMap="SiteResultMap">
+        select * from water_site
+        where site_owner = #{name}
+    </select>
+
+<!--根据场地唯一id查询-->
+    <select id="findOneSiteById" parameterType="java.lang.Integer" resultMap="SiteResultMap">
+        select * from water_site
+        where id = #{id}
+    </select>
+
+
+<!--    修改场地-->
+    <update id="modifySite" parameterType="cn.xin.domain.sites.SiteProp" >
+        update water_site
+        SET site_name=#{siteName},site_description=#{siteDescription},site_date=#{siteDate}
+        WHERE id = #{id}
+    </update>
+
+
+    <!--    删除场地-->
+        <delete id="deleteSite" parameterType="java.lang.Integer" >
+            delete from water_site
+            where id = #{id}
+        </delete>
+
+    <!--降重查询场地边界点名称-->
+    <select id="findBPNDistinct" parameterType="java.lang.Integer" resultMap="BoundingResultMap">
+       select distinct bounding_name from site_bounding;
+    </select>
+
+    <select id="findBPByName" parameterType="java.lang.String" resultMap="BoundingResultMap">
+       select * from site_bounding
+       where bounding_name = #{name}
+    </select>
+
+
+    <!--    &lt;!&ndash;根据用户和场地名称查询一个场地&ndash;&gt;-->
+<!--    <select id="findOneSite" parameterType="java.lang.String" resultMap="SiteResultMap" >-->
+<!--        select * from water_sites-->
+<!--        where owner_name = #{username} and  site_name = #{siteName}-->
+<!--    </select>-->
+
+
+
+
+
+    
+</mapper>
